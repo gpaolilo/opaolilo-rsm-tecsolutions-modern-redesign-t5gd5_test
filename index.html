@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSM TecSolutions – Consultoria e Soluções em TI</title>
+    <meta name="description" content="RSM TecSolutions provides customized IT solutions, software development, IT consulting, information security and SAFR facial recognition services.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/RSM_logo_only.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/RSM_logo_only.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/RSM_logo_only.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts - Rubik & Fira Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Rubik', 'sans-serif'],
+                        body: ['Fira Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0a0a0a',
+                        secondary: '#111827',
+                        accent: {
+                            lime: '#c1ff00',
+                            blue: '#1a2ffb',
+                            cyan: '#00d4ff',
+                            purple: '#8832f7',
+                            coral: '#ff4c41',
+                            orange: '#ff6b35',
+                            cream: '#fef3e2'
+                        },
+                        surface: '#ffffff',
+                        muted: '#6b7280',
+                        dark: '#0f172a'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-primary antialiased bg-white selection:bg-accent-lime selection:text-primary overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-transparent" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center magnetic-element">
+                    <a href="#" class="flex items-center gap-3 group">
+                        <img src="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/RSM_logo_only.png" alt="RSM TecSolutions Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-xl font-bold tracking-tight text-white drop-shadow-lg group-hover:text-accent-lime transition-colors duration-300">RSM TecSolutions</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#about" class="nav-link px-4 py-2 text-sm font-medium transition-colors duration-300 relative group rounded-lg hover:bg-white/10" data-i18n="navAbout">
+                        About
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-accent-lime transition-all duration-300 group-hover:w-1/2 rounded-full"></span>
+                    </a>
+                    <a href="#services" class="nav-link px-4 py-2 text-sm font-medium transition-colors duration-300 relative group rounded-lg hover:bg-white/10" data-i18n="navServices">
+                        Services
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-accent-lime transition-all duration-300 group-hover:w-1/2 rounded-full"></span>
+                    </a>
+                    <a href="#process" class="nav-link px-4 py-2 text-sm font-medium transition-colors duration-300 relative group rounded-lg hover:bg-white/10" data-i18n="navProcess">
+                        Process
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-accent-lime transition-all duration-300 group-hover:w-1/2 rounded-full"></span>
+                    </a>
+                    
+                    <!-- Language Switcher -->
+                    <div class="relative group mx-3">
+                        <button class="flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors duration-300 rounded-lg hover:bg-white/10">
+                            <span id="current-language">EN</span>
+                            <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-32 bg-white rounded-xl shadow-lg py-2 border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <button class="language-switcher w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors flex items-center justify-between text-gray-800" data-lang="en">
+                                <span>English</span>
+                                <span class="text-xs font-medium text-accent-lime">EN</span>
+                            </button>
+                            <button class="language-switcher w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors flex items-center justify-between text-gray-800" data-lang="pt">
+                                <span>Português</span>
+                                <span class="text-xs font-medium text-accent-lime">PT</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="ml-4 bg-white hover:bg-accent-lime px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-accent-lime/25 magnetic-btn overflow-hidden relative group" data-i18n="navContact">
+                        <span class="relative z-10 flex items-center gap-2 text-primary">
+                            Contact Us
+                            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-accent-lime transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="text-white hover:text-accent-lime focus:outline-none p-2 magnetic-element" id="mobile-menu-btn" aria-label="Toggle menu">
+                        <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5 pointer-events-none">
+                            <span class="w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+                            <span class="w-6 h-0.5 bg-current transition-all duration-300"></span>
+                            <span class="w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu - Fixed Animation -->
+        <div class="md:hidden fixed w-full bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-2xl transition-all duration-500 ease-out z-40 mobile-menu-closed" id="mobile-menu" style="top: 80px; transform: translateY(-100%); opacity: 0;">
+            <div class="px-6 pt-8 pb-10 space-y-2">
+                <a href="#about" class="block text-lg font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-all py-3 border-b border-gray-100 pl-2 rounded-lg" data-i18n="navAbout">About</a>
+                <a href="#services" class="block text-lg font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-all py-3 border-b border-gray-100 pl-2 rounded-lg" data-i18n="navServices">Services</a>
+                <a href="#process" class="block text-lg font-medium text-gray-700 hover:text-primary hover:bg-gray-50 transition-all py-3 border-b border-gray-100 pl-2 rounded-lg" data-i18n="navProcess">Process</a>
+                
+                <!-- Language Switcher for Mobile -->
+                <div class="py-4 border-b border-gray-100">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-lg font-medium text-gray-700">🌐 Language / Idioma</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="language-switcher flex-1 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 bg-gray-100 hover:bg-accent-lime hover:text-primary text-center" data-lang="en">
+                            <span class="font-semibold">English</span>
+                            <span class="text-xs block text-gray-500">EN</span>
+                        </button>
+                        <button class="language-switcher flex-1 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 bg-gray-100 hover:bg-accent-lime hover:text-primary text-center" data-lang="pt">
+                            <span class="font-semibold">Português</span>
+                            <span class="text-xs block text-gray-500">PT</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="block text-lg font-bold text-primary py-4 mt-6 bg-accent-lime/10 hover:bg-accent-lime/20 rounded-2xl px-4 text-center transition-colors duration-300" data-i18n="navContact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden min-h-screen flex items-center hero-section">
+        <!-- Animated Background Layers -->
+        <div class="absolute inset-0 animated-bg"></div>
+        
+        <!-- Floating Orbs -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+        
+        <!-- Grid Pattern Overlay -->
+        <div class="absolute inset-0 grid-pattern opacity-30"></div>
+        
+        <!-- Floating Particles -->
+        <div class="particles-container" id="particles"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center">
+                <div class="space-y-8 hero-content text-center justify-self-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-primary text-xs font-bold uppercase tracking-widest border border-gray-200 w-fit mx-auto magnetic-element hover:bg-accent-lime/20 transition-colors duration-300 cursor-default" data-i18n="heroTagline">
+                        <span class="w-2 h-2 rounded-full bg-accent-lime animate-pulse"></span>
+                        Innovative IT Solutions
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary leading-[1.05] tracking-tight text-center mx-auto">
+                        <span data-i18n="heroTitle1">Transform Your </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-accent-purple to-accent-coral animate-gradient" data-i18n="heroTitle2">Business</span><span data-i18n="heroTitle3"> with Smart Tech</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed font-body font-light max-w-xl mx-auto text-center" data-i18n="heroDescription">
+                        RSM TecSolutions delivers customized IT solutions and software development that help companies increase their value and improve operations with quality services.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 pt-4 justify-center">
+                        <a href="#services" class="inline-flex items-center gap-3 bg-primary hover:bg-accent-blue text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-accent-blue/20 group magnetic-btn relative overflow-hidden">
+                            <span class="relative z-10 flex items-center gap-2">
+                                <span data-i18n="heroButton1">Explore Services</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
+                            </span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-accent-blue to-accent-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center gap-3 bg-white hover:bg-gray-50 text-primary border-2 border-gray-200 hover:border-accent-lime px-8 py-4 rounded-full font-semibold transition-all duration-300 group magnetic-btn hover:shadow-xl">
+                            <span data-i18n="heroButton2">Get in Touch</span>
+                            <i data-lucide="arrow-up-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative hero-image flex justify-center items-center justify-self-center">
+                    <div class="relative rounded-3xl overflow-visible shadow-2xl bg-gray-100 p-2 group w-full max-w-[500px] md:max-w-[600px] lg:max-w-[700px] mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                        <img src="https://rsmtecsolutions.com/wp-content/uploads/2020/06/hero-img1.png" alt="IT Solutions" class="w-full h-auto rounded-2xl transition-all duration-700 group-hover:scale-105">
+                        
+                        <!-- Floating Stats Card - Made shorter -->
+                        <div class="absolute -bottom-1 -left-1 lg:-bottom-2 lg:-left-2 bg-white/95 backdrop-blur-xl rounded-lg lg:rounded-xl shadow-md lg:shadow-lg p-1.5 lg:p-2 border border-gray-100/50 floating-card z-20">
+                            <div class="flex items-center gap-1.5 lg:gap-2">
+                                <div class="w-5 h-5 lg:w-6 lg:h-6 bg-gradient-to-br from-accent-lime to-green-400 rounded-full flex items-center justify-center text-primary shadow-sm lg:shadow">
+                                    <i data-lucide="shield-check" class="w-2.5 h-2.5 lg:w-3 lg:h-3"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs lg:text-sm font-bold text-primary counter-animated" data-target="100">0</div>
+                                    <div class="text-[9px] lg:text-[10px] text-gray-500 font-medium">Secure Solutions</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Tech Card - Made slightly bigger -->
+                        <div class="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 bg-white/95 backdrop-blur-xl rounded-lg lg:rounded-xl shadow-md lg:shadow-lg p-2 lg:p-2.5 border border-gray-100/50 floating-card z-20" style="animation-delay: 1.5s;">
+                            <div class="flex items-center gap-1.5">
+                                <img src="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/SAFR_icon_192x192.webp" 
+                                     alt="SAFR Certified" 
+                                     class="w-6 h-6 lg:w-7 lg:h-7 object-contain"
+                                     onerror="this.onerror=null; this.src='https://safr.com/favicon.ico'">
+                                <span class="font-bold text-primary text-xs lg:text-sm">SAFR Certified</span>
+                            </div>
+                        </div>
+
+                        <!-- Decorative elements -->
+                        <div class="absolute top-1/2 -right-2 w-5 h-5 bg-accent-coral rounded-full animate-bounce shadow-lg z-10" style="animation-duration: 3s;"></div>
+                        <div class="absolute bottom-20 -left-2 w-4 h-4 bg-accent-purple rounded-full animate-bounce shadow-lg z-10" style="animation-duration: 4s; animation-delay: 1s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer" onclick="document.getElementById('stats').scrollIntoView({behavior: 'smooth'})">
+            <span class="text-xs font-medium uppercase tracking-widest text-gray-500">Scroll</span>
+            <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center pt-2">
+                <div class="w-1 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-20 lg:py-28 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')]"></div>
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-lime/50 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-lime/50 to-transparent"></div>
+        
+        <!-- Animated Background Blobs -->
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-accent-blue/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+                <div class="text-center group p-6 rounded-2xl hover:bg-white/5 transition-all duration-500 stat-item">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-bold text-accent-lime mb-2 counter-animated font-display" data-target="15">0</div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm group-hover:text-white transition-colors" data-i18n="statsClients">Happy Clients</div>
+                </div>
+                <div class="text-center group p-6 rounded-2xl hover:bg-white/5 transition-all duration-500 stat-item">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-bold text-accent-cyan mb-2 counter-animated font-display" data-target="245">0</div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm group-hover:text-white transition-colors" data-i18n="statsAwards">Awards Won</div>
+                </div>
+                <div class="text-center group p-6 rounded-2xl hover:bg-white/5 transition-all duration-500 stat-item">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-bold text-accent-purple mb-2 counter-animated font-display" data-target="33">0</div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm group-hover:text-white transition-colors" data-i18n="statsProjects">Projects Done</div>
+                </div>
+                <div class="text-center group p-6 rounded-2xl hover:bg-white/5 transition-all duration-500 stat-item">
+                    <div class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 counter-animated font-display" data-target="30">0</div>
+                    <div class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm group-hover:text-white transition-colors" data-i18n="statsCertifications">Certifications</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 lg:py-32 bg-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-50/80 to-transparent"></div>
+        <div class="absolute top-20 right-20 w-72 h-72 bg-accent-blue/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-20 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl"></div>
+        
+        <!-- Decorative Line -->
+        <div class="absolute top-1/2 left-0 w-32 h-1 bg-gradient-to-r from-accent-lime to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+                <div class="relative order-2 lg:order-1 about-image flex justify-center items-center">
+                    <div class="relative max-w-full">
+                        <div class="absolute -top-8 -left-8 w-32 h-32 bg-accent-lime/30 rounded-full blur-2xl animate-pulse"></div>
+                        <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-accent-blue/20 rounded-full blur-2xl animate-pulse" style="animation-delay: 1s;"></div>
+                        
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-gray-100 p-2 group">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-accent-blue/10 to-accent-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                            <img src="https://rsmtecsolutions.com/wp-content/uploads/2020/06/about-1.png" alt="About RSM TecSolutions" class="w-full h-auto rounded-2xl transition-all duration-700 group-hover:scale-105">
+                            
+                            <!-- Experience Badge -->
+                            <div class="absolute bottom-6 right-6 bg-white/95 backdrop-blur rounded-2xl shadow-xl p-4 border border-gray-100 floating-card" style="animation-delay: 2s;">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-accent-blue to-blue-600 rounded-full flex items-center justify-center text-white shadow-lg">
+                                        <i data-lucide="award" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-primary counter-animated" data-target="10">0</div>
+                                        <div class="text-xs text-gray-500">Years Experience</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8 order-1 lg:order-2 about-content">
+                    <div class="inline-flex items-center gap-3 text-accent-blue font-bold text-xs uppercase tracking-widest" data-i18n="aboutTitle">
+                        <div class="w-12 h-0.5 bg-accent-blue"></div>
+                        About Us
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary leading-tight tracking-tight">
+                        <span data-i18n="aboutHeading1">Driving Innovation Through </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple" data-i18n="aboutHeading2">Technology Excellence</span>
+                    </h2>
+                    
+                    <p class="text-gray-600 text-lg leading-relaxed font-body font-light" data-i18n="aboutDescription">
+                        RSM TecSolutions is an innovative company focused on providing customized solutions in information technology and software development. Our mission is to help companies increase their value and improve their operations with quality and efficient services.
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6 pt-4">
+                        <div class="flex items-start gap-4 group p-4 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-default hover:shadow-lg">
+                            <div class="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center flex-shrink-0 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md">
+                                <i data-lucide="code" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-primary text-lg" data-i18n="aboutItem1">Software Development</h3>
+                                <p class="text-sm text-gray-500 mt-1 font-body" data-i18n="aboutItem1Desc">Bespoke solutions tailored to your needs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 group p-4 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-default hover:shadow-lg">
+                            <div class="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center flex-shrink-0 text-accent-coral group-hover:bg-accent-coral group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md">
+                                <i data-lucide="shield" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-primary text-lg" data-i18n="aboutItem2">IT Security</h3>
+                                <p class="text-sm text-gray-500 mt-1 font-body" data-i18n="aboutItem2Desc">Protection for your digital assets</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 group p-4 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-default hover:shadow-lg">
+                            <div class="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center flex-shrink-0 text-accent-purple group-hover:bg-accent-purple group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md">
+                                <i data-lucide="scan-face" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-primary text-lg" data-i18n="aboutItem3">SAFR Recognition</h3>
+                                <p class="text-sm text-gray-500 mt-1 font-body" data-i18n="aboutItem3Desc">Advanced facial recognition tech</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 group p-4 rounded-2xl hover:bg-gray-50 transition-all duration-300 cursor-default hover:shadow-lg">
+                            <div class="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center flex-shrink-0 text-accent-lime group-hover:bg-accent-lime group-hover:text-primary transition-all duration-300 shadow-sm group-hover:shadow-md">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-primary text-lg" data-i18n="aboutItem4">IT Consulting</h3>
+                                <p class="text-sm text-gray-500 mt-1 font-body" data-i18n="aboutItem4Desc">Expert guidance and strategy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 lg:py-32 bg-gray-50/50 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_#c1ff00_0%,_transparent_40%)] opacity-20"></div>
+        <div class="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_bottom_right,_#1a2ffb_0%,_transparent_40%)] opacity-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20 services-header">
+                <div class="inline-flex items-center gap-3 text-accent-blue font-bold text-xs uppercase tracking-widest mb-6" data-i18n="servicesTitle">
+                    <div class="w-12 h-0.5 bg-accent-blue"></div>
+                    Our Services
+                    <div class="w-12 h-0.5 bg-accent-blue"></div>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6 tracking-tight"><span data-i18n="servicesHeading1">We Provide </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple" data-i18n="servicesHeading2">IT Services</span></h2>
+                <p class="text-gray-600 text-lg font-body font-light" data-i18n="servicesDescription">
+                    Discover how RSM TecSolutions can boost your company's success, offering customized solutions in software development, IT consulting, information security and facial recognition.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Service 1 -->
+                <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-accent-blue/20 hover:-translate-y-2 service-card magnetic-element">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent-blue to-accent-purple rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-accent-blue/30 group-hover:shadow-accent-blue/50">
+                        <i data-lucide="code-2" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl lg:text-2xl font-bold text-primary mb-3" data-i18n="service1">Software Development</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 font-body font-light" data-i18n="service1Desc">
+                        We seek the best technologies on the market to design innovative solutions and serve each client in the best way.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-accent-blue font-bold group-hover:gap-3 transition-all duration-300 text-sm magnetic-element">
+                        <span data-i18n="learnMore">Learn More</span> <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-accent-lime/20 hover:-translate-y-2 service-card magnetic-element">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent-lime to-green-400 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-accent-lime/30 group-hover:shadow-accent-lime/50">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl lg:text-2xl font-bold text-primary mb-3" data-i18n="service2">IT Security</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 font-body font-light" data-i18n="service2Desc">
+                        We guarantee the security of your digital assets and business continuity with reliable solutions in cybersecurity and threat prevention.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-accent-blue font-bold group-hover:gap-3 transition-all duration-300 text-sm magnetic-element">
+                        <span data-i18n="learnMore">Learn More</span> <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-accent-purple/20 hover:-translate-y-2 service-card magnetic-element">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent-purple to-pink-500 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-accent-purple/30 group-hover:shadow-accent-purple/50">
+                        <i data-lucide="scan-face" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl lg:text-2xl font-bold text-primary mb-3" data-i18n="service3">SAFR Customization</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 font-body font-light" data-i18n="service3Desc">
+                        We offer customization of reports and applications based on SAFR facial recognition technology.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-accent-blue font-bold group-hover:gap-3 transition-all duration-300 text-sm magnetic-element">
+                        <span data-i18n="learnMore">Learn More</span> <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-accent-coral/20 hover:-translate-y-2 service-card magnetic-element">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent-coral to-orange-500 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-accent-coral/30 group-hover:shadow-accent-coral/50">
+                        <i data-lucide="users" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl lg:text-2xl font-bold text-primary mb-3">IT Consultant</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 font-body font-light">
+                        We work with the integration of the most varied technologies available in the market to provide the best solution for our customers.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-accent-blue font-bold group-hover:gap-3 transition-all duration-300 text-sm magnetic-element">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-accent-cyan/20 hover:-translate-y-2 service-card magnetic-element">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent-cyan to-blue-400 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-accent-cyan/30 group-hover:shadow-accent-cyan/50">
+                        <i data-lucide="activity" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl lg:text-2xl font-bold text-primary mb-3">24/7 Monitoring</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 font-body font-light">
+                        Enhance visibility into your IT environment with advanced monitoring solutions like Grafana for real-time data analysis.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-accent-blue font-bold group-hover:gap-3 transition-all duration-300 text-sm magnetic-element">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-2 service-card magnetic-element">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-gray-700 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+                        <i data-lucide="headphones" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl lg:text-2xl font-bold text-primary mb-3">SAFR Support</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 font-body font-light">
+                        We are a certified partner and able to support the installation, configuration and monitoring of SAFR systems.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-accent-blue font-bold group-hover:gap-3 transition-all duration-300 text-sm magnetic-element">
+                        Learn More <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 lg:py-32 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-24 process-header">
+                <div class="inline-flex items-center gap-3 text-accent-blue font-bold text-xs uppercase tracking-widest mb-6" data-i18n="processTitle">
+                    <div class="w-12 h-0.5 bg-accent-blue"></div>
+                    Our Process
+                    <div class="w-12 h-0.5 bg-accent-blue"></div>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6 tracking-tight"><span data-i18n="processHeading1">Expert Guidance to </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple" data-i18n="processHeading2">Achieve Your Objectives</span></h2>
+            </div>
+
+            <div class="space-y-24 lg:space-y-32 relative">
+                <!-- Connecting Line -->
+                <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent-lime via-accent-blue to-accent-purple transform -translate-x-1/2"></div>
+                
+                <!-- Step 01 -->
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center process-step">
+                    <div class="order-2 lg:order-1 space-y-6 process-content">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="text-7xl lg:text-9xl font-bold text-gray-100 select-none font-display">01</span>
+                            <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
+                        </div>
+                        <h3 class="text-2xl lg:text-4xl font-bold text-primary" data-i18n="step1Title">Strategic Business Planning</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed font-body font-light" data-i18n="step1Desc">
+                            At RSM TecSolutions, we provide professional consulting services to help you create and execute a comprehensive business plan tailored to your company's unique goals and requirements. Our team of experts works closely with you to analyze your market, identify opportunities, and develop strategies for growth and success.
+                        </p>
+                        <ul class="space-y-4 pt-4">
+                            <li class="flex items-center gap-4 text-gray-700 group cursor-default">
+                                <div class="w-10 h-10 rounded-full bg-accent-lime/20 flex items-center justify-center text-accent-lime flex-shrink-0 group-hover:bg-accent-lime group-hover:text-primary transition-all duration-300">
+                                    <i data-lucide="check" class="w-5 h-5"></i>
+                                </div>
+                                <span class="font-medium" data-i18n="step1Item1">Market analysis and research</span>
+                            </li>
+                            <li class="flex items-center gap-4 text-gray-700 group cursor-default">
+                                <div class="w-10 h-10 rounded-full bg-accent-lime/20 flex items-center justify-center text-accent-lime flex-shrink-0 group-hover:bg-accent-lime group-hover:text-primary transition-all duration-300">
+                                    <i data-lucide="check" class="w-5 h-5"></i>
+                                </div>
+                                <span class="font-medium" data-i18n="step1Item2">Opportunity identification</span>
+                            </li>
+                            <li class="flex items-center gap-4 text-gray-700 group cursor-default">
+                                <div class="w-10 h-10 rounded-full bg-accent-lime/20 flex items-center justify-center text-accent-lime flex-shrink-0 group-hover:bg-accent-lime group-hover:text-primary transition-all duration-300">
+                                    <i data-lucide="check" class="w-5 h-5"></i>
+                                </div>
+                                <span class="font-medium" data-i18n="step1Item3">Growth strategy development</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="order-1 lg:order-2 relative group process-image">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 rounded-3xl transform rotate-2 transition-transform duration-500 group-hover:rotate-3"></div>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Strategic Business Planning Meeting" class="rounded-3xl shadow-2xl w-full relative z-10 transition-all duration-500 group-hover:scale-[1.02]" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22640%22%20height%3D%22360%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%3E%3Cstop%20stop-color%3D%22%231a2ffb%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%238832f7%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22180%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EStrategic%20Planning%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                        
+                        <!-- Step Indicator -->
+                        <div class="hidden lg:flex absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-accent-lime rounded-full items-center justify-center text-primary font-bold shadow-xl z-20">1</div>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center process-step">
+                    <div class="relative group process-image">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent-purple/20 to-pink-500/20 rounded-3xl transform -rotate-2 transition-transform duration-500 group-hover:-rotate-3"></div>
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="Software Development Team Collaborating on Agile DevOps Project with CI/CD Pipeline" class="rounded-3xl shadow-2xl w-full relative z-10 transition-all duration-500 group-hover:scale-[1.02]" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22640%22%20height%3D%22360%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%3E%3Cstop%20stop-color%3D%22%238832f7%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%23c1ff00%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22180%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EAgile%20DevOps%20CI%2FCD%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                        
+                        <!-- Step Indicator -->
+                        <div class="hidden lg:flex absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-accent-purple rounded-full items-center justify-center text-white font-bold shadow-xl z-20">2</div>
+                    </div>
+                    <div class="space-y-6 process-content">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="text-7xl lg:text-9xl font-bold text-gray-100 select-none font-display">02</span>
+                            <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
+                        </div>
+                        <h3 class="text-2xl lg:text-4xl font-bold text-primary">Solution Development & Deployment</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed font-body font-light">
+                            At RSM TecSolutions, we design and deploy solutions that are actionable, adaptable, and resilient to change. Our team helps organizations plan and implement technology strategies aligned with their business goals. By leveraging Agile methodologies and DevOps practices, along with Continuous Integration and Continuous Delivery (CI/CD), we deliver software faster, improve quality, and enable frequent, reliable releases—helping our clients accelerate time-to-market and stay competitive.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-4 pt-4">
+                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-accent-purple/30 hover:bg-accent-purple/5 transition-all duration-300 group/card cursor-default">
+                                <i data-lucide="code" class="w-8 h-6 text-accent-purple mb-3"></i>
+                                <h4 class="font-bold text-primary text-lg">Agile Development</h4>
+                                <p class="text-sm text-gray-500 mt-1 font-body">Iterative and incremental approach</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-accent-purple/30 hover:bg-accent-purple/5 transition-all duration-300 group/card cursor-default">
+                                <i data-lucide="git-merge" class="w-8 h-6 text-accent-purple mb-3"></i>
+                                <h4 class="font-bold text-primary text-lg">DevOps & CI/CD</h4>
+                                <p class="text-sm text-gray-500 mt-1 font-body">Automated deployment and integration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center process-step">
+                    <div class="order-2 lg:order-1 space-y-6 process-content">
+                        <div class="flex items-center gap-6 mb-4">
+                            <span class="text-7xl lg:text-9xl font-bold text-gray-100 select-none font-display">03</span>
+                            <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
+                        </div>
+                        <h3 class="text-2xl lg:text-4xl font-bold text-primary">Operations Analysis & KPIs</h3>
+                        <p class="text-gray-600 text-lg leading-relaxed font-body font-light">
+                            Effective operations monitoring involves tracking and analyzing a wide range of data points, including production rates, sales figures, customer feedback, and employee performance. RSM TecSolutions provides valuable insights into how their partners are performing.
+                        </p>
+                        <div class="bg-gradient-to-r from-accent-lime/20 to-accent-blue/10 p-6 lg:p-8 rounded-2xl border border-accent-lime/30 hover:border-accent-lime/50 transition-all duration-300 group cursor-default hover:shadow-lg">
+                            <h4 class="font-bold text-primary mb-2 text-lg flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-accent-lime"></i>
+                                Continual Improvement & Growth
+                            </h4>
+                            <p class="text-gray-600 font-body font-light">
+                                By developing targeted strategies and allocating resources effectively, our team can guide meaningful changes that drive your business growth and success.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2 flex justify-center items-center relative group process-image">
+                        <div class="relative max-w-full">
+                            <div class="absolute inset-0 bg-gradient-to-br from-accent-lime/20 to-green-500/20 rounded-3xl transform rotate-2 transition-transform duration-500 group-hover:rotate-3"></div>
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80&crop=entropy" alt="Operations Analysis" class="rounded-3xl shadow-2xl w-full relative z-10 transition-all duration-500 group-hover:scale-[1.02]" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22640%22%20height%3D%22360%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20640%20360%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%3E%3Cstop%20stop-color%3D%22%23c1ff00%22%20offset%3D%220%25%22%2F%3E%3Cstop%20stop-color%3D%22%231a2ffb%22%20offset%3D%22100%25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22640%22%20height%3D%22360%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ctext%20x%3D%22320%22%20y%3D%22180%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EOperations%20Analysis%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                        </div>
+                        <!-- Step Indicator -->
+                        <div class="hidden lg:flex absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-accent-blue rounded-full items-center justify-center text-white font-bold shadow-xl z-20">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 lg:py-32 bg-primary relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')]"></div>
+        
+        <!-- Decorative floating elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-accent-lime/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-48 h-48 bg-accent-blue/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-64 h-64 bg-accent-purple/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center cta-content">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 tracking-tight"><span data-i18n="ctaHeading1">How May We </span><span class="text-accent-lime" data-i18n="ctaHeading2">Help You!</span></h2>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-body font-light" data-i18n="ctaDescription">
+                RSM TecSolutions team will work with you to understand your unique needs and goals, and develop a customized approach that meets your budget and timeline.
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-3 bg-accent-lime text-primary px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-accent-lime/50 group magnetic-btn relative overflow-hidden">
+                <span class="relative z-10 flex items-center gap-2">
+                    <span data-i18n="ctaButton">Contact Us Today</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1"></i>
+                </span>
+                <div class="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 lg:py-32 bg-gray-50 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white to-transparent"></div>
+        <div class="absolute top-40 right-40 w-96 h-96 bg-accent-blue/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-40 left-20 w-72 h-72 bg-accent-lime/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center">
+
+                <div class="space-y-10 contact-info text-center">
+                    <div>
+                        <div class="inline-flex items-center gap-3 text-accent-blue font-bold text-xs uppercase tracking-widest mb-6" data-i18n="contactTitle">
+                            <div class="w-12 h-0.5 bg-accent-blue"></div>
+                            Get In Touch
+                            <div class="w-12 h-0.5 bg-accent-blue"></div>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6 tracking-tight"><span data-i18n="contactHeading1">Contact Us </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple" data-i18n="contactHeading2">Today</span></h2>
+                        <p class="text-gray-600 text-lg leading-relaxed font-body font-light max-w-xl mx-auto" data-i18n="contactDescription">
+                            Ready to transform your business with innovative IT solutions? Reach out to us directly via email or WhatsApp.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto items-stretch">
+                        <a href="mailto:contato@rsmtecsolutions.com" class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 group magnetic-element block cursor-pointer relative overflow-hidden h-full flex flex-col justify-between w-full">
+                            <div class="absolute inset-0 bg-gradient-to-br from-accent-blue/5 to-accent-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+                            <div class="relative z-10 flex flex-col items-center h-full justify-between">
+                                <div class="w-16 h-16 bg-gradient-to-br from-accent-blue to-accent-purple rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-accent-blue/30 group-hover:shadow-accent-blue/50">
+                                    <i data-lucide="mail" class="w-8 h-8"></i>
+                                </div>
+                                <div class="flex flex-col items-center flex-grow justify-center">
+                                    <h3 class="text-xl font-bold text-primary mb-3 text-center group-hover:text-accent-blue transition-colors duration-300" data-i18n="contactEmail">Email Us</h3>
+                                    <div class="font-bold text-primary text-lg text-center block group-hover:text-accent-blue transition-colors duration-300">contato@rsmtecsolutions.com</div>
+                                </div>
+                                <p class="text-gray-500 text-sm text-center mt-4 font-body font-light group-hover:text-gray-700 transition-colors duration-300" data-i18n="contactResponse">We respond within 24 hours</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/5511973233260" target="_blank" rel="noopener noreferrer" class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 group magnetic-element block cursor-pointer relative overflow-hidden h-full flex flex-col justify-between w-full">
+                            <div class="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-green-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+                            <div class="relative z-10 flex flex-col items-center h-full justify-between">
+                                <div class="w-16 h-16 bg-gradient-to-br from-accent-lime to-green-400 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-accent-lime/30 group-hover:shadow-accent-lime/50">
+                                    <i data-lucide="message-circle" class="w-8 h-8"></i>
+                                </div>
+                                <div class="flex flex-col items-center flex-grow justify-center">
+                                    <h3 class="text-xl font-bold text-primary mb-3 text-center group-hover:text-accent-lime transition-colors duration-300">WhatsApp</h3>
+                                    <div class="font-bold text-primary text-lg text-center block group-hover:text-accent-lime transition-colors duration-300">+55 11 97323-3260</div>
+                                </div>
+                                <p class="text-gray-500 text-sm text-center mt-4 font-body font-light group-hover:text-gray-700 transition-colors duration-300">Chat with us directly</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="pt-8">
+                        <div class="inline-flex items-center gap-4 text-gray-500 text-sm font-body font-medium">
+                            <i data-lucide="clock" class="w-5 h-5 text-accent-purple"></i>
+                            <span>Business Hours: Monday-Friday, 9AM-6PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-gray-400 py-16 border-t border-gray-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_#c1ff00_0%,_transparent_50%)] opacity-5"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-6 group cursor-pointer magnetic-element">
+                        <img src="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/RSM_logo_only.png" alt="RSM TecSolutions Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-2xl font-bold text-white tracking-tight group-hover:text-accent-lime transition-colors duration-300">RSM TecSolutions</span>
+                    </div>
+                    <p class="text-gray-500 max-w-sm mb-8 text-lg leading-relaxed font-body font-light">
+                        Innovative IT solutions provider focused on delivering customized software development, security, and consulting services.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-lime hover:text-primary transition-all duration-300 hover:scale-110 magnetic-element" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-lime hover:text-primary transition-all duration-300 hover:scale-110 magnetic-element" aria-label="Twitter">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-lime hover:text-primary transition-all duration-300 hover:scale-110 magnetic-element" aria-label="Facebook">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent-lime hover:text-primary transition-all duration-300 hover:scale-110 magnetic-element" aria-label="Instagram">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">Software Development</a></li>
+                        <li><a href="#services" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">IT Security</a></li>
+                        <li><a href="#services" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">SAFR Recognition</a></li>
+                        <li><a href="#services" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">IT Consulting</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">About Us</a></li>
+                        <li><a href="#process" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">Our Process</a></li>
+                        <li><a href="#contact" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">Contact</a></li>
+                        <li><a href="#" class="hover:text-accent-lime transition-colors duration-300 hover:translate-x-1 inline-block magnetic-element">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-600 font-body">
+                    © 2024 RSM TecSolutions. All rights reserved.
+                </p>
+                <div class="flex gap-8 text-sm text-gray-600 font-body">
+                    <a href="#" class="hover:text-accent-lime transition-colors duration-300 magnetic-element">Privacy Policy</a>
+                    <a href="#" class="hover:text-accent-lime transition-colors duration-300 magnetic-element">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="w-16 h-16 bg-accent-lime rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="check" class="w-8 h-8 text-primary"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-center text-primary mb-2">Message Sent!</h3>
+            <p class="text-gray-600 text-center mb-6 font-body">Thank you for contacting us. We'll get back to you within 24 hours.</p>
+            <button onclick="closeModal()" class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-accent-blue transition-colors duration-300">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
