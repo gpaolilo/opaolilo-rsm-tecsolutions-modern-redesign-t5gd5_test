@@ -474,26 +474,7 @@ if (document.readyState === 'loading') {
     initScrollAnimations();
 }
 
-// Initialize GSAP ScrollTrigger if available - Fixed to avoid CSS conflicts
-if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Note: Process steps are handled by CSS/IntersectionObserver to avoid conflicts
-    // but we add subtle parallax to process images
-    gsap.utils.toArray('.process-image').forEach((img) => {
-        gsap.from(img, {
-            scrollTrigger: {
-                trigger: img,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            },
-            scale: 0.95,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        });
-    });
-}
+// Scroll animations for elements are handled below using GSAP.
 
 // Preloader and initial animations - Fixed
 window.addEventListener('load', () => {
@@ -604,6 +585,40 @@ document.addEventListener('keydown', (e) => {
 // Initialize GSAP ScrollTrigger if available - Fixed to avoid CSS conflicts
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
+    
+    // Hero Section Video Scroll Control
+    const heroVideo = document.getElementById('hero-scroll-video');
+    if (heroVideo) {
+        // We configure the pinning and video scrubbing
+        const setupVideoScroll = () => {
+            gsap.to(heroVideo, {
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "top top",
+                    end: "+=2000", // The hero section stays pinned for 2000px of scrolling
+                    pin: true,
+                    scrub: 0.5, // 0.5s smoothing effect on scrub
+                    onUpdate: (self) => {
+                        // Update the video current time relative to scroll progress
+                        if (heroVideo.duration) {
+                            try {
+                                heroVideo.currentTime = self.progress * heroVideo.duration;
+                            } catch (e) {
+                                // Ignore errors if video is not ready
+                            }
+                        }
+                    }
+                }
+            });
+        };
+        
+        // Wait for metadata so we know the duration before setting up
+        if (heroVideo.readyState >= 1) {
+            setupVideoScroll();
+        } else {
+            heroVideo.addEventListener('loadedmetadata', setupVideoScroll);
+        }
+    }
     
     // Note: Process steps are handled by CSS/IntersectionObserver to avoid conflicts
     // but we add subtle parallax to process images
