@@ -73,7 +73,7 @@
                 <div class="flex-shrink-0 flex items-center magnetic-element">
                     <a href="#" class="flex items-center gap-3 group">
                         <img src="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/RSM_logo_only.png" alt="RSM TecSolutions Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300">
-                        <span class="text-xl font-bold tracking-tight text-white drop-shadow-lg group-hover:text-accent-lime transition-colors duration-300">RSM TecSolutions</span>
+                        <span class="text-xl font-bold tracking-tight text-primary drop-shadow-lg group-hover:text-accent-lime transition-colors duration-300">RSM TecSolutions</span>
                     </a>
                 </div>
 
@@ -121,7 +121,7 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button type="button" class="text-white hover:text-accent-lime focus:outline-none p-2 magnetic-element" id="mobile-menu-btn" aria-label="Toggle menu">
+                    <button type="button" class="text-primary hover:text-accent-lime focus:outline-none p-2 magnetic-element" id="mobile-menu-btn" aria-label="Toggle menu">
                         <div class="w-6 h-6 flex flex-col justify-center items-center gap-1.5 pointer-events-none">
                             <span class="w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
                             <span class="w-6 h-0.5 bg-current transition-all duration-300"></span>
@@ -162,22 +162,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden min-h-screen flex items-center hero-section">
-        <!-- Animated Background Layers -->
-        <div class="absolute inset-0 animated-bg"></div>
-        
-        <!-- Floating Orbs -->
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-        <div class="orb orb-4"></div>
-        <div class="orb orb-5"></div>
-        
-        <!-- Grid Pattern Overlay -->
-        <div class="absolute inset-0 grid-pattern opacity-30"></div>
-        
-        <!-- Floating Particles -->
-        <div class="particles-container" id="particles"></div>
+    <section class="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden min-h-screen flex items-center bg-white">
+        <!-- Soft Background Layers (Same as About section) -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-50/80 to-transparent"></div>
+        <div class="absolute top-20 right-20 w-72 h-72 bg-accent-blue/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-20 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center">

@@ -112,26 +112,7 @@
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Initial transparent state - force white text on all elements */
-#navbar.bg-transparent a,
-#navbar.bg-transparent span,
-#navbar.bg-transparent .nav-link,
-#navbar.bg-transparent #current-language,
-#navbar.bg-transparent button {
-    color: white !important;
-}
 
-/* Initial transparent state - contact button (white bg, dark text) */
-#navbar.bg-transparent a.bg-white,
-#navbar.bg-transparent .bg-white {
-    background-color: white !important;
-    color: #0a0a0a !important;
-}
-
-#navbar.bg-transparent a.bg-white span,
-#navbar.bg-transparent .bg-white span {
-    color: #0a0a0a !important;
-}
 
 /* Logo styling */
 #navbar .flex-shrink-0 a > img {
@@ -182,18 +163,7 @@
     color: #0a0a0a !important;
 }
 
-/* Mobile menu button - white in both states */
-#navbar #mobile-menu-btn,
-#navbar #mobile-menu-btn span {
-    color: white !important;
-    background-color: white !important;
-}
 
-#navbar.navbar-scrolled #mobile-menu-btn,
-#navbar.navbar-scrolled #mobile-menu-btn span {
-    color: white !important;
-    background-color: white !important;
-}
 
 /* Glass morphism effect for scrolled state */
 .glass {
@@ -483,21 +453,7 @@ img {
     z-index: 10;
 }
 
-.hero-content h1 {
-    color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
 
-.hero-content p {
-    color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.hero-content .inline-flex {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: #c1ff00 !important;
-    backdrop-filter: blur(10px);
-}
 
 /* Floating Cards in Hero - Updated for contrast */
 .hero-image .floating-card {
@@ -511,28 +467,7 @@ img {
     color: #0a0a0a !important;
 }
 
-/* CTA Buttons - Enhanced for dark bg */
-.hero-content .bg-white {
-    background: rgba(255, 255, 255, 0.95) !important;
-    color: #0a0a0a !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-}
 
-.hero-content .bg-white:hover {
-    background: #ffffff !important;
-    border-color: #c1ff00 !important;
-}
-
-/* Scroll indicator - light version */
-.hero-section .absolute.bottom-8 {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.hero-section .absolute.bottom-8 .border-gray-400,
-.hero-section .absolute.bottom-8 .bg-gray-400 {
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.4);
-}
 
 .hero-content h1,
 .hero-content p {
