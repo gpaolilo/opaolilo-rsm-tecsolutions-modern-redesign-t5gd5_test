@@ -593,7 +593,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         const setupVideoScroll = () => {
             gsap.to(heroVideo, {
                 scrollTrigger: {
-                    trigger: ".hero-section",
+                    trigger: "#hero",
                     start: "top top",
                     end: "+=2000", // The hero section stays pinned for 2000px of scrolling
                     pin: true,
