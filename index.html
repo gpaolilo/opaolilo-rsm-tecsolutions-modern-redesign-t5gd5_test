@@ -161,28 +161,25 @@
         </div>
     </nav>
 
-    <section id="hero" class="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden min-h-screen flex items-center justify-center">
-        <!-- Background Video & Gradient Overlay -->
-        <div class="absolute inset-0 w-full h-full z-0">
-            <video id="hero-scroll-video" src="video_3_seconds_720_keyframe.mp4" muted playsinline preload="auto" class="w-full h-full object-cover"></video>
-            <!-- Overlay to ensure text readability -->
-            <div class="absolute inset-0 bg-gradient-to-b from-white/90 via-white/60 to-white/95"></div>
-        </div>
+    <section id="hero" class="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden min-h-screen flex items-center bg-white">
+        <!-- Soft Background Layers (Same as About section) -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-50/80 to-transparent"></div>
+        <div class="absolute top-20 right-20 w-72 h-72 bg-accent-blue/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 left-20 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl"></div>
         
-        <!-- Main Content -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="max-w-4xl mx-auto flex flex-col items-center justify-center">
-                <div class="space-y-8 hero-content text-center">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm text-primary text-xs font-bold uppercase tracking-widest border border-gray-200/50 w-fit mx-auto magnetic-element hover:bg-white transition-colors duration-300 cursor-default shadow-sm" data-i18n="heroTagline">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center">
+                <div class="space-y-8 hero-content text-center justify-self-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 text-primary text-xs font-bold uppercase tracking-widest border border-gray-200 w-fit mx-auto magnetic-element hover:bg-accent-lime/20 transition-colors duration-300 cursor-default" data-i18n="heroTagline">
                         <span class="w-2 h-2 rounded-full bg-accent-lime animate-pulse"></span>
                         Innovative IT Solutions
                     </div>
                     
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary leading-[1.05] tracking-tight text-center mx-auto drop-shadow-sm">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary leading-[1.05] tracking-tight text-center mx-auto">
                         <span data-i18n="heroTitle1">Transform Your </span><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-accent-purple to-accent-coral animate-gradient" data-i18n="heroTitle2">Business</span><span data-i18n="heroTitle3"> with Smart Tech</span>
                     </h1>
                     
-                    <p class="text-lg md:text-xl text-gray-800 font-medium leading-relaxed font-body max-w-2xl mx-auto text-center drop-shadow-sm" data-i18n="heroDescription">
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed font-body font-light max-w-xl mx-auto text-center" data-i18n="heroDescription">
                         RSM TecSolutions delivers customized IT solutions and software development that help companies increase their value and improve operations with quality services.
                     </p>
                     
@@ -194,43 +191,55 @@
                             </span>
                             <div class="absolute inset-0 bg-gradient-to-r from-accent-blue to-accent-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </a>
-                        <a href="#contact" class="inline-flex items-center gap-3 bg-white/90 backdrop-blur hover:bg-white text-primary border-2 border-primary/10 hover:border-accent-lime px-8 py-4 rounded-full font-semibold transition-all duration-300 group magnetic-btn hover:shadow-xl">
+                        <a href="#contact" class="inline-flex items-center gap-3 bg-white hover:bg-gray-50 text-primary border-2 border-gray-200 hover:border-accent-lime px-8 py-4 rounded-full font-semibold transition-all duration-300 group magnetic-btn hover:shadow-xl">
                             <span data-i18n="heroButton2">Get in Touch</span>
                             <i data-lucide="arrow-up-right" class="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Floating Stats Cards placed gracefully below text -->
-                <div class="flex flex-wrap items-center justify-center gap-6 mt-16 w-full opacity-90 hover:opacity-100 transition-opacity">
-                    <!-- Floating Stats Card -->
-                    <div class="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-3 px-5 border border-white/40 flex items-center gap-3 floating-card hover:-translate-y-1 transition-transform">
-                        <div class="w-8 h-8 bg-gradient-to-br from-accent-lime to-green-400 rounded-full flex items-center justify-center text-primary shadow-sm">
-                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                <div class="relative hero-image flex justify-center items-center justify-self-center">
+                    <div class="relative overflow-visible group w-full max-w-[350px] md:max-w-[400px] lg:max-w-[480px] mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none rounded-3xl"></div>
+                        <video id="hero-scroll-video" src="video_3_seconds_720_keyframe.mp4" muted playsinline preload="auto" class="w-full h-auto rounded-3xl transition-all duration-700 shadow-xl shadow-accent-blue/10"></video>
+                        
+                        <!-- Floating Stats Card - Made shorter -->
+                        <div class="absolute -bottom-1 -left-1 lg:-bottom-2 lg:-left-2 bg-white/95 backdrop-blur-xl rounded-lg lg:rounded-xl shadow-md lg:shadow-lg p-1.5 lg:p-2 border border-gray-100/50 floating-card z-20">
+                            <div class="flex items-center gap-1.5 lg:gap-2">
+                                <div class="w-5 h-5 lg:w-6 lg:h-6 bg-gradient-to-br from-accent-lime to-green-400 rounded-full flex items-center justify-center text-primary shadow-sm lg:shadow">
+                                    <i data-lucide="shield-check" class="w-2.5 h-2.5 lg:w-3 lg:h-3"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs lg:text-sm font-bold text-primary counter-animated" data-target="100">0</div>
+                                    <div class="text-[9px] lg:text-[10px] text-gray-500 font-medium">Secure Solutions</div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="text-sm font-bold text-primary counter-animated" data-target="100">0</div>
-                            <div class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Secure Solutions</div>
-                        </div>
-                    </div>
 
-                    <!-- Floating Tech Card -->
-                    <div class="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-3 px-5 border border-white/40 flex items-center gap-3 floating-card hover:-translate-y-1 transition-transform" style="animation-delay: 1.5s;">
-                        <img src="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/SAFR_icon_192x192.webp" 
-                                alt="SAFR Certified" 
-                                class="w-8 h-8 object-contain drop-shadow"
-                                onerror="this.onerror=null; this.src='https://safr.com/favicon.ico'">
-                        <span class="font-bold text-primary text-sm uppercase tracking-wider">SAFR Certified</span>
+                        <!-- Floating Tech Card - Made slightly bigger -->
+                        <div class="absolute -top-1 -right-1 lg:-top-2 lg:-right-2 bg-white/95 backdrop-blur-xl rounded-lg lg:rounded-xl shadow-md lg:shadow-lg p-2 lg:p-2.5 border border-gray-100/50 floating-card z-20" style="animation-delay: 1.5s;">
+                            <div class="flex items-center gap-1.5">
+                                <img src="https://huggingface.co/spaces/opaolilo/rsm-tecsolutions-modern-redesign-t5gd5/resolve/main/images/SAFR_icon_192x192.webp" 
+                                     alt="SAFR Certified" 
+                                     class="w-6 h-6 lg:w-7 lg:h-7 object-contain"
+                                     onerror="this.onerror=null; this.src='https://safr.com/favicon.ico'">
+                                <span class="font-bold text-primary text-xs lg:text-sm">SAFR Certified</span>
+                            </div>
+                        </div>
+
+                        <!-- Decorative elements -->
+                        <div class="absolute top-1/2 -right-2 w-5 h-5 bg-accent-coral rounded-full animate-bounce shadow-lg z-10" style="animation-duration: 3s;"></div>
+                        <div class="absolute bottom-20 -left-2 w-4 h-4 bg-accent-purple rounded-full animate-bounce shadow-lg z-10" style="animation-duration: 4s; animation-delay: 1s;"></div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Scroll Indicator (centered bottom) -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer z-10" onclick="document.getElementById('stats').scrollIntoView({behavior: 'smooth'})">
-            <span class="text-xs font-bold uppercase tracking-widest text-primary drop-shadow-sm">Scroll</span>
-            <div class="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center pt-2 bg-white/30 backdrop-blur">
-                <div class="w-1 h-2 bg-primary rounded-full animate-bounce"></div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer" onclick="document.getElementById('stats').scrollIntoView({behavior: 'smooth'})">
+            <span class="text-xs font-medium uppercase tracking-widest text-gray-500">Scroll</span>
+            <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center pt-2">
+                <div class="w-1 h-2 bg-gray-400 rounded-full animate-bounce"></div>
             </div>
         </div>
     </section>
